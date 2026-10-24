@@ -1,0 +1,22 @@
+{
+    "name": "@jpmergulhao/pixelflow-types",
+    "version": "1.0.0",
+    "author": "João Pedro Mergulhão <jpedromergulhao.dev@gmail.com> (https://jpmergulhao.com)",
+    "description": "Shared TypeScript definitions and contracts for the PixelFlow tracking ecosystem.",
+    "license": "MIT",
+    "types": "./dist/index.d.ts",
+    "scripts": {
+        "build": "tsc"
+    },
+    "keywords": [
+        "types",
+        "typescript",
+        "pixelflow",
+        "tracking",
+        "interfaces"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/jpmergulhao/pixelflow"
+    }
+}

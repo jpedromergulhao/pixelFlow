@@ -1,0 +1,38 @@
+{
+    "name": "@jpmergulhao/pixelflow-server",
+    "version": "1.0.0",
+    "author": "João Pedro Mergulhão <jpedromergulhao.dev@gmail.com> (https://jpmergulhao.com)",
+    "description": "Server-side Conversion API (CAPI) tracking for Meta, Pinterest, Google Analytics and TikTok (PixelFlow).",
+    "license": "MIT",
+    "main": "./dist/index.js",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.ts",
+    "keywords": [
+        "meta",
+        "capi",
+        "conversions-api",
+        "pinterest",
+        "tiktok",
+        "analytics",
+        "server-side",
+        "tracking",
+        "nodejs",
+        "backend"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/jpmergulhao/pixelflow"
+    },
+    "scripts": {
+        "build": "tsup",
+        "dev": "tsup --watch"
+    },
+    "dependencies": {
+        "@jpmergulhao/pixelflow-types": "*",
+        "server-only": "^0.0.1"
+    },
+    "devDependencies": {
+        "tsup": "^8.0.0",
+        "typescript": "^5.0.0"
+    }
+}

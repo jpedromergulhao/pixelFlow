@@ -1,0 +1,63 @@
+{
+    "name": "@jpmergulhao/pixelflow-client",
+    "version": "1.0.0",
+    "author": "João Pedro Mergulhão <jpedromergulhao.dev@gmail.com> (https://jpmergulhao.com)",
+    "description": "Client-side browser tracking for Meta Pixel, Pinterest Tag, TikTok Pixel and Google Analytics (PixelFlow).",
+    "license": "MIT",
+    "main": "./dist/index.js",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.ts",
+    "keywords": [
+        "meta",
+        "facebook",
+        "pixel",
+        "pinterest",
+        "tracking",
+        "analytics",
+        "lgpd",
+        "frontend",
+        "google",
+        "tiktok",
+        "analytics"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/jpmergulhao/pixelflow"
+    },
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.mjs",
+            "require": "./dist/index.js"
+        },
+        "./next": {
+            "types": "./dist/next.d.ts",
+            "import": "./dist/next.mjs",
+            "require": "./dist/next.js"
+        }
+    },
+    "peerDependencies": {
+        "next": ">=13.0.0",
+        "react": ">=18.0.0"
+    },
+    "peerDependenciesMeta": {
+        "next": {
+            "optional": true
+        },
+        "react": {
+            "optional": true
+        }
+    },
+    "dependencies": {
+        "@jpmergulhao/pixelflow-types": "*"
+    },
+    "devDependencies": {
+        "tsup": "^8.0.0",
+        "typescript": "^5.0.0",
+        "@types/react": "^18.0.0"
+    },
+    "scripts": {
+        "build": "tsup",
+        "dev": "tsup --watch"
+    }
+}

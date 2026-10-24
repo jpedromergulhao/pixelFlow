@@ -1,0 +1,21 @@
+{
+  "name": "pixelflow-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "author": "João Pedro Mergulhão <jpedromergulhao.dev@gmail.com> (https://jpmergulhao.com)",
+  "license": "MIT",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "publish:all": "npm publish --workspaces --access public",
+    "build": "npm run build --workspaces --if-present"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jpmergulhao/pixelflow"
+  },
+  "devDependencies": {
+    "next": "^16.4.2"
+  }
+}
