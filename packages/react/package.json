@@ -1,0 +1,26 @@
+{
+    "name": "@jpmergulhao/pixelflow-react",
+    "version": "1.0.0",
+    "description": "React Context and Hooks for PixelFlow tracking library",
+    "main": "./dist/index.js",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.ts",
+    "scripts": {
+        "build": "tsup",
+        "dev": "tsup --watch"
+    },
+    "peerDependencies": {
+        "react": ">=16.8.0",
+        "react-dom": ">=16.8.0"
+    },
+    "dependencies": {
+        "@jpmergulhao/pixelflow-client": "*",
+        "@jpmergulhao/pixelflow-types": "*"
+    },
+    "devDependencies": {
+        "@types/react": "^18.2.0",
+        "@types/react-dom": "^18.2.0",
+        "tsup": "^8.0.0",
+        "typescript": "^5.0.0"
+    }
+}
