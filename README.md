@@ -22,25 +22,37 @@ To use the PixelFlow ecosystem, you need active accounts on your target advertis
 
 > **Note on data propagation:** After completing the PixelFlow integration in your application, the first fired events may take up to 24 hours to reflect in the Ad Manager dashboards (especially for Pinterest and TikTok) due to the internal processing time of these platforms' servers.
 
-## Supported Platforms (v1.0.0)
+## Supported Platforms (v1.1.0)
 
-Currently in version 1.0.0, the library fully supports the four major tracking platforms utilized by modern e-commerces and SaaS applications:
+Currently in version 1.1.0, the library fully supports the four major tracking platforms utilized by modern e-commerces and SaaS applications:
 
 ### 1. Google Analytics 4 (GA4)
 - **Client-Side (gtag.js):** Standard browser tracking for page views, user journeys, and standard e-commerce events.
 - **Measurement Protocol (Server-Side):** When your backend detects a confirmed payment, the `@pixelflow/server` package makes an HTTP request directly to Google Analytics servers. This ensures the `purchase` conversion is registered with 100% accuracy, bypassing AdBlockers and without relying on the user keeping the "Thank You" page open.
+- 🔑 **How to get your credentials:** 
+  - **Measurement ID (`G-XXXXX`):** Go to GA4 Admin > Data Streams > Web Stream Details.
+  - **API Secret:** Go to GA4 Admin > Data Streams > Web Stream Details > Measurement Protocol API secrets > Create.
 
 ### 2. Meta (Facebook/Instagram)
 - **Meta Pixel (Client-Side):** The standard browser library that tracks visitor activity from Meta ads. It uses first-party cookies to match your website visitors with their respective Facebook accounts, allowing you to build retargeting flows and analyze user actions in the Meta Events Manager.
 - **Conversions API / CAPI (Server-Side):** The backend counterpart that securely sends highly reliable server events directly to Meta. PixelFlow handles the required SHA-256 data hashing (emails, phone numbers) natively before sending, maximizing your Event Match Quality (EMQ).
+- 🔑 **How to get your credentials:** 
+  - **Pixel ID:** Go to [Meta Events Manager](https://events.facebook.com/) > Data Sources > Settings.
+  - **Access Token:** In the same Settings tab, scroll down to the Conversions API section and click "Generate access token".
 
 ### 3. Pinterest
 - **Pinterest Tag (Client-Side):** Tracks user actions on your website after interacting with a Pin. Crucial for understanding organic and paid engagement on Pinterest.
 - **Pinterest Conversions API (Server-Side):** Ensures server-to-server visibility for critical bottom-of-funnel events (like `checkout` and `sign_up`), bypassing browser limitations and formatting currency and catalog data exactly as Pinterest demands.
+- 🔑 **How to get your credentials:** 
+  - **Advertiser ID / Tag ID:** Go to [Pinterest Ads Manager](https://ads.pinterest.com/) > Ads > Conversions.
+  - **Access Token:** In the Conversions API section, click on "Generate new token".
 
 ### 4. TikTok
 - **TikTok Pixel (Client-Side):** Captures browser events to measure the impact of your TikTok campaigns, optimizing ad delivery to users most likely to convert.
 - **TikTok Events API (Server-Side):** Shares website visitor events directly from your server to TikTok. PixelFlow automatically standardizes the payload and hashes sensitive customer data to ensure compliance and high match rates.
+- 🔑 **How to get your credentials:** 
+  - **Pixel ID:** Go to [TikTok Ads Manager](https://ads.tiktok.com/) > Tools > Events > Web Events.
+  - **Access Token:** Click on your Pixel > Settings > Events API > Generate Access Token.
 
 ## Package Structure (Modular Architecture)
 

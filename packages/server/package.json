@@ -1,12 +1,16 @@
 {
     "name": "@jpmergulhao/pixelflow-server",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "author": "João Pedro Mergulhão <jpedromergulhao.dev@gmail.com> (https://jpmergulhao.com)",
     "description": "Server-side Conversion API (CAPI) tracking for Meta, Pinterest, Google Analytics and TikTok (PixelFlow).",
     "license": "MIT",
     "main": "./dist/index.js",
     "module": "./dist/index.mjs",
     "types": "./dist/index.d.ts",
+    "files": [
+        "dist",
+        "README.md"
+    ],
     "keywords": [
         "meta",
         "capi",
