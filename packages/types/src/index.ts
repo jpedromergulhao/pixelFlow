@@ -129,25 +129,13 @@ export interface SubmitApplicationPayload extends BaseEvent {
   applicationType?: string;
 }
 
-// --- SERVER-SIDE (CAPI) ---
-
-export interface ServerUserData {
-  clientIpAddress: string;
-  clientUserAgent: string;
-  /** O desenvolvedor passa os dados limpos, a PixelFlow faz o SHA-256 internamente */
+export interface UserData {
+  clientIpAddress?: string;
+  clientUserAgent?: string;
   email?: string;
   phone?: string;
-
-  /** Identificadores de Cookies Opcionais para melhorar o match rate */
-  fbp?: string; // Meta Browser ID
-  fbc?: string; // Meta Click ID
-  ttp?: string; // TikTok Cookie ID
-}
-
-export interface PurchasePayload extends BaseEvent {
-  /** ID único do pedido/transação (necessário para o GA4 e dedup) */
-  transactionId: string;
-  value: number;
-  /** Dados do usuário. Opcional no front, mas vital no Server-Side */
-  userData?: ServerUserData;
+  fbc?: string;
+  fbp?: string;
+  ttp?: string;
+  clientId?: string;
 }

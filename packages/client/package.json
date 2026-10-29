@@ -18,7 +18,9 @@
         "frontend",
         "google",
         "tiktok",
-        "analytics"
+        "analytics",
+        "react",
+        "next"
     ],
     "repository": {
         "type": "git",
