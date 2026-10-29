@@ -1,10 +1,27 @@
 {
     "name": "@jpmergulhao/pixelflow-react",
     "version": "1.0.0",
+    "license": "MIT",
+    "author": "João Pedro Mergulhão <jpedromergulhao.dev@gmail.com> (https://jpmergulhao.com)",
     "description": "React Context and Hooks for PixelFlow tracking library",
     "main": "./dist/index.js",
     "module": "./dist/index.mjs",
     "types": "./dist/index.d.ts",
+    "keywords": [
+        "meta",
+        "facebook",
+        "pixel",
+        "pinterest",
+        "tracking",
+        "analytics",
+        "lgpd",
+        "frontend",
+        "google",
+        "tiktok",
+        "analytics",
+        "react",
+        "next"
+    ],
     "scripts": {
         "build": "tsup",
         "dev": "tsup --watch"
