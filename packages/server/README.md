@@ -40,6 +40,47 @@ const pixelFlow = new PixelFlowServer({
 
 ## Events
 
+### `trackInitiateCheckout`
+Used when a person initiates the checkout process. On the backend, it is ideal to fire this the moment the server generates a payment session (e.g., Stripe Checkout Session) or when an order is saved in the database with a "Pending" status.
+
+**Payload Arguments (Event):**
+-   `platforms` (Required)
+-   `hasConsented` (Required)
+-   `eventId` (Optional - Recommended for deduplication with the frontend)
+-   `value` (Optional - Checkout value in decimal format)
+-   `currency` (Required if value is sent)
+-   `contents` (Optional - List of products in the cart)
+
+**UserData Arguments (User):**
+-   `clientIpAddress` (Required)
+-   `clientUserAgent` (Required)
+-   `email` (Optional - The library will auto-hash to SHA-256)
+-   `phone` (Optional - The library will auto-hash to SHA-256)
+
+```typescript
+// Example usage when generating a payment link/session in your backend
+const handleCheckoutCreated = async (session, customer, req) => {
+  await pixelFlow.trackInitiateCheckout(
+    // 1. Event Data
+    {
+      eventId: session.id, // e.g., "cs_test_123"
+      hasConsented: true,
+      platforms: ["meta", "pinterest", "tiktok", "google"],
+      currency: "BRL",
+      value: 150.50, // Always send decimal format
+      contents: [{ id: "PROD-01", name: "Premium Embroidery", quantity: 1, price: 150.50 }]
+    },
+    // 2. User Data (UserData)
+    {
+      clientIpAddress: req.headers.get("x-forwarded-for") ?? "0.0.0.0",
+      clientUserAgent: req.headers.get("user-agent") ?? "",
+      email: customer.email, // Send raw, the library handles SHA-256
+      phone: customer.phone
+    }
+  );
+};
+```
+
 ### `trackPurchase`
 Used when a person completes a purchase. On the backend, it is ideal to fire this via Webhook from your payment gateway (Stripe, PayPal, etc.) the moment the order status changes to "Paid" or "Approved", ensuring 100% accuracy in your revenue data.
 

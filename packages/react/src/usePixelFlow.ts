@@ -287,7 +287,9 @@ export const usePixelFlow = () => {
     );
 
     return {
+        hasConsented,
         setHasConsented,
+        platforms,
         setPlatforms,
         trackAddPaymentInfo,
         trackAddToCart,
