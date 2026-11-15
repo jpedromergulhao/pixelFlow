@@ -24,6 +24,7 @@ import {
     RemoveFromCartPayload,
     LoginPayload,
     SharePayload,
+    SocialClickPayload,
 } from "@jpmergulhao/pixelflow-types";
 
 type ReactPayload<T> = Omit<T, "hasConsented" | "platforms">;
@@ -286,6 +287,17 @@ export const usePixelFlow = () => {
         [hasConsented, platforms]
     );
 
+    const trackSocialClick = useCallback(
+        (payload: ReactPayload<SocialClickPayload>) => {
+            VanillaEvents.trackSocialClick({
+                ...payload,
+                hasConsented,
+                platforms,
+            });
+        },
+        [hasConsented, platforms]
+    );
+
     return {
         hasConsented,
         setHasConsented,
@@ -313,5 +325,6 @@ export const usePixelFlow = () => {
         trackStartTrial,
         trackDonate,
         trackDownload,
+        trackSocialClick
     };
 };
