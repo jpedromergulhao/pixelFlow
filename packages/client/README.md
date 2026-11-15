@@ -285,6 +285,23 @@ Used when a person submits an application (before approval).
 Used when a person initiates contact via phone, SMS, email, or chat (e.g., Clicking a WhatsApp floating button).
 * **Arguments:** `platforms`, `hasConsented`, `contactMethod` (Optional), `eventId` (Optional), `value` (Optional), `currency` (Required if value).
 
+#### `trackSocialClick`
+Used when a user clicks an outbound social media profile link (e.g., Instagram, TikTok, YouTube, or Pinterest icons in the footer or header). Isolates social engagement as a custom event (`SocialClick` / `social_click`) so casual profile visits don't pollute high-intent conversion funnels like `Contact` or `Lead`.
+- **Arguments:** `platforms`, `hasConsented`, `socialMedia`, `location` (Optional), `eventId` (Optional) `value` (Optional), `currency` (Required if value).
+
+```typescript
+import { trackSocialClick } from "@jpmergulhao/pixelflow-client";
+
+const handleSocialClick = () => {
+  trackSocialClick({
+    hasConsented: true,
+    platforms: ["meta", "google", "tiktok", "pinterest"],
+    socialMedia: "instagram",
+    location: "footer"
+  });
+};
+```
+
 #### `trackSchedule`
 Used when a person books an appointment to visit your location or schedule a call. Excellent for service companies, clinics, and car dealerships.
 * **Arguments:** `platforms`, `hasConsented`, `scheduleType` (Optional), `scheduleDate` (Optional), `eventId` (Optional), `value` (Optional), `currency` (Required if value).

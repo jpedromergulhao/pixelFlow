@@ -17,6 +17,7 @@ import {
     SchedulePayload,
     SearchPayload,
     SharePayload,
+    SocialClickPayload,
     StartTrialPayload,
     SubmitApplicationPayload,
     SubscribePayload,
@@ -109,6 +110,7 @@ export const trackAddPaymentInfo = (payload: AddPaymentInfoPayload) => {
             {
                 event_name: "AddPaymentInfo",
                 currency: normalizedCurrency,
+                event_id: eventId,
                 value,
                 line_items: contents?.map(item => ({
                     product_id: item.id,
@@ -118,7 +120,6 @@ export const trackAddPaymentInfo = (payload: AddPaymentInfoPayload) => {
                     product_category: item.category
                 }))
             },
-            { event_id: eventId }
         );
     }
 };
@@ -201,6 +202,7 @@ export const trackAddToCart = (payload: AddToCartPayload) => {
             {
                 currency: normalizedCurrency,
                 value,
+                event_id: eventId,
                 line_items: contents?.map(item => ({
                     product_id: item.id,
                     product_name: item.name,
@@ -209,7 +211,6 @@ export const trackAddToCart = (payload: AddToCartPayload) => {
                     product_category: item.category
                 }))
             },
-            { event_id: eventId }
         );
     }
 };
@@ -291,6 +292,7 @@ export const trackAddToWishlist = (payload: AddToWishlistPayload) => {
                 event_name: "AddToWishlist",
                 currency: normalizedCurrency,
                 value,
+                event_id: eventId,
                 line_items: contents?.map(item => ({
                     product_id: item.id,
                     product_name: item.name,
@@ -299,7 +301,6 @@ export const trackAddToWishlist = (payload: AddToWishlistPayload) => {
                     product_category: item.category
                 }))
             },
-            { event_id: eventId }
         );
     }
 };
@@ -378,10 +379,10 @@ export const trackDownload = (payload: DownloadPayload) => {
                 event_name: "Download",
                 currency: normalizedCurrency,
                 value,
+                event_id: eventId,
                 product_name: fileName,
                 product_category: normalizedFileType
             },
-            { event_id: eventId }
         );
     }
 };
@@ -464,6 +465,7 @@ export const trackInitiateCheckout = (payload: InitiateCheckoutPayload) => {
                 event_name: "InitiateCheckout",
                 currency: normalizedCurrency,
                 value,
+                event_id: eventId,
                 line_items: contents?.map(item => ({
                     product_id: item.id,
                     product_name: item.name,
@@ -472,7 +474,6 @@ export const trackInitiateCheckout = (payload: InitiateCheckoutPayload) => {
                     product_category: item.category
                 }))
             },
-            { event_id: eventId }
         );
     }
 };
@@ -551,6 +552,7 @@ export const trackPurchase = (payload: PurchasePayload) => {
                 currency: normalizedCurrency,
                 value,
                 order_id: orderId,
+                event_id: eventId,
                 line_items: contents?.map(item => ({
                     product_id: item.id,
                     product_name: item.name,
@@ -559,7 +561,6 @@ export const trackPurchase = (payload: PurchasePayload) => {
                     product_category: item.category
                 }))
             },
-            { event_id: eventId }
         );
     }
 };
@@ -643,6 +644,7 @@ export const trackSearch = (payload: SearchPayload) => {
                 search_query: searchString,
                 currency: normalizedCurrency,
                 value,
+                event_id: eventId,
                 line_items: contents?.map(item => ({
                     product_id: item.id,
                     product_name: item.name,
@@ -651,7 +653,6 @@ export const trackSearch = (payload: SearchPayload) => {
                     product_category: item.category
                 }))
             },
-            { event_id: eventId }
         );
     }
 };
@@ -734,6 +735,7 @@ export const trackSubscribe = (payload: SubscribePayload) => {
                 event_name: "Subscribe",
                 currency: normalizedCurrency,
                 value,
+                event_id: eventId,
                 subscription_tier: subscriptionTier,
                 line_items: contents?.map(item => ({
                     product_id: item.id,
@@ -743,7 +745,6 @@ export const trackSubscribe = (payload: SubscribePayload) => {
                     product_category: item.category
                 }))
             },
-            { event_id: eventId }
         );
     }
 };
@@ -826,6 +827,7 @@ export const trackViewContent = (payload: ViewContentPayload) => {
             {
                 currency: normalizedCurrency,
                 value,
+                event_id: eventId,
                 line_items: contents?.map(item => ({
                     product_id: item.id,
                     product_name: item.name,
@@ -834,7 +836,6 @@ export const trackViewContent = (payload: ViewContentPayload) => {
                     product_category: item.category
                 }))
             },
-            { event_id: eventId }
         );
     }
 };
@@ -896,9 +897,9 @@ export const trackDonate = (payload: DonatePayload) => {
                 event_name: "Donate",
                 currency: normalizedCurrency,
                 value,
+                event_id: eventId,
                 product_name: donationCampaign,
             },
-            { event_id: eventId }
         );
     }
 };
@@ -963,10 +964,10 @@ export const trackApplicationApproval = (payload: ApplicationApprovalPayload) =>
                 event_name: "ApplicationApproval",
                 currency: normalizedCurrency,
                 value,
+                event_id: eventId,
                 application_id: applicationId,
                 application_type: applicationType,
             },
-            { event_id: eventId }
         );
     }
 };
@@ -1028,8 +1029,8 @@ export const trackCompleteRegistration = (payload: CompleteRegistrationPayload) 
                 currency: normalizedCurrency,
                 value,
                 lead_type: registrationMethod,
+                event_id: eventId,
             },
-            { event_id: eventId }
         );
     }
 };
@@ -1091,9 +1092,9 @@ export const trackContact = (payload: ContactPayload) => {
                 event_name: "Contact",
                 currency: normalizedCurrency,
                 value,
+                event_id: eventId,
                 lead_type: contactMethod
             },
-            { event_id: eventId }
         );
     }
 };
@@ -1174,6 +1175,7 @@ export const trackCustomizeProduct = (payload: CustomizeProductPayload) => {
             "custom",
             {
                 event_name: "CustomizeProduct",
+                event_id: eventId,
                 currency: normalizedCurrency,
                 value,
                 product_name: customizationDetail,
@@ -1185,7 +1187,6 @@ export const trackCustomizeProduct = (payload: CustomizeProductPayload) => {
                     product_category: item.category
                 }))
             },
-            { event_id: eventId }
         );
     }
 };
@@ -1266,6 +1267,7 @@ export const trackFindLocation = (payload: FindLocationPayload) => {
             "custom",
             {
                 event_name: "FindLocation",
+                event_id: eventId,
                 currency: normalizedCurrency,
                 value,
                 search_query: locationName,
@@ -1277,7 +1279,6 @@ export const trackFindLocation = (payload: FindLocationPayload) => {
                     product_category: item.category
                 }))
             },
-            { event_id: eventId }
         );
     }
 };
@@ -1339,12 +1340,12 @@ export const trackSchedule = (payload: SchedulePayload) => {
             "custom",
             {
                 event_name: "Schedule",
+                event_id: eventId,
                 currency: normalizedCurrency,
                 value,
                 lead_type: scheduleType,
                 schedule_date: scheduleDate,
             },
-            { event_id: eventId }
         );
     }
 };
@@ -1403,11 +1404,11 @@ export const trackLead = (payload: LeadPayload) => {
             "track",
             "lead",
             {
+                event_id: eventId,
                 currency: normalizedCurrency,
                 value,
                 lead_type: leadType
             },
-            { event_id: eventId }
         );
     }
 };
@@ -1477,13 +1478,13 @@ export const trackStartTrial = (payload: StartTrialPayload) => {
             "custom",
             {
                 event_name: "StartTrial",
+                event_id: eventId,
                 currency: normalizedCurrency,
                 value,
                 lead_type: trialTier,
                 predicted_ltv: predictedLtv,
                 line_items: contents?.map(item => ({ product_id: item.id, product_name: item.name, product_price: item.price, product_quantity: item.quantity, product_category: item.category })),
             },
-            { event_id: eventId }
         );
     }
 };
@@ -1545,12 +1546,12 @@ export const trackSubmitApplication = (payload: SubmitApplicationPayload) => {
             "custom",
             {
                 event_name: "SubmitApplication",
+                event_id: eventId,
                 currency: normalizedCurrency,
                 value,
                 lead_type: applicationType,
                 application_id: applicationId
             },
-            { event_id: eventId }
         );
     }
 };
@@ -1590,7 +1591,7 @@ export const trackRemoveFromCart = (payload: RemoveFromCartPayload) => {
     }
 
     if (platforms.includes("google") && typeof window.gtag === "function") {
-        window.gtag("event", "remove_from_cart", { 
+        window.gtag("event", "remove_from_cart", {
             currency: normalizedCurrency,
             value,
             items: contents?.map(item => ({
@@ -1630,6 +1631,7 @@ export const trackRemoveFromCart = (payload: RemoveFromCartPayload) => {
             "custom",
             {
                 event_name: "RemoveFromCart",
+                event_id: eventId,
                 currency: normalizedCurrency,
                 value,
                 line_items: contents?.map(item => ({
@@ -1640,7 +1642,6 @@ export const trackRemoveFromCart = (payload: RemoveFromCartPayload) => {
                     product_category: item.category
                 }))
             },
-            { event_id: eventId }
         );
     }
 };
@@ -1674,7 +1675,7 @@ export const trackLogin = (payload: LoginPayload) => {
     }
 
     if (platforms.includes("google") && typeof window.gtag === "function") {
-        window.gtag("event", "login", { 
+        window.gtag("event", "login", {
             method: loginMethod,
             currency: normalizedCurrency,
             value,
@@ -1700,11 +1701,11 @@ export const trackLogin = (payload: LoginPayload) => {
             "custom",
             {
                 event_name: "Login",
+                event_id: eventId,
                 currency: normalizedCurrency,
                 value,
                 lead_type: loginMethod
             },
-            { event_id: eventId }
         );
     }
 };
@@ -1727,13 +1728,13 @@ export const trackShare = (payload: SharePayload) => {
     if (platforms.includes("meta") && typeof window.fbq === "function") {
         window.fbq(
             "track",
-            "Share", 
+            "Share",
             {
                 currency: normalizedCurrency,
                 value,
                 content_ids: contentIds,
                 content_type: contentType,
-                content_name: shareMethod, 
+                content_name: shareMethod,
                 contents: contents?.map(item => ({
                     id: item.id,
                     quantity: item.quantity,
@@ -1745,10 +1746,10 @@ export const trackShare = (payload: SharePayload) => {
     }
 
     if (platforms.includes("google") && typeof window.gtag === "function") {
-        window.gtag("event", "share", { 
+        window.gtag("event", "share", {
             method: shareMethod,
             content_type: contentType,
-            item_id: contentIds ? contentIds[0] : undefined, 
+            item_id: contentIds ? contentIds[0] : undefined,
             currency: normalizedCurrency,
             value,
             items: contents?.map(item => ({
@@ -1764,7 +1765,7 @@ export const trackShare = (payload: SharePayload) => {
 
     if (platforms.includes("tiktok") && typeof window.ttq === "object") {
         window.ttq.track(
-            "Share", 
+            "Share",
             {
                 currency: normalizedCurrency,
                 value,
@@ -1790,6 +1791,7 @@ export const trackShare = (payload: SharePayload) => {
             {
                 event_name: "Share",
                 currency: normalizedCurrency,
+                event_id: eventId,
                 value,
                 lead_type: shareMethod,
                 line_items: contents?.map(item => ({
@@ -1800,7 +1802,68 @@ export const trackShare = (payload: SharePayload) => {
                     product_category: item.category
                 }))
             },
+        );
+    }
+};
+
+export const trackSocialClick = (payload: SocialClickPayload) => {
+    if (!payload.hasConsented) {
+        console.warn("[PixelFlow] Social Media event blocked due to lack of consent.");
+        return;
+    }
+
+    const { platforms, eventId, value, currency, socialMedia, location } = payload;
+
+    if (value !== undefined && !currency) {
+        console.error("[PixelFlow] Error: 'currency' is required when 'value' is provided. Event Social Click aborted.");
+        return;
+    }
+
+    const normalizedCurrency = currency?.trim().toUpperCase();
+
+    if (platforms.includes("meta") && typeof window.fbq === "function") {
+        window.fbq(
+            "trackCustom",
+            "SocialClick",
+            {
+                currency: normalizedCurrency,
+                value,
+                content_name: socialMedia,
+                content_category: location,
+            },
+            { eventID: eventId }
+        );
+    }
+
+    if (platforms.includes("google") && typeof window.gtag === "function") {
+        window.gtag("event", "social_click", {
+            method: socialMedia,
+            location,
+            currency: normalizedCurrency,
+            value,
+            event_id: eventId,
+        });
+    }
+
+    if (platforms.includes("tiktok") && typeof window.ttq?.track === "function") {
+        window.ttq.track(
+            "SocialClick",
+            {
+                currency: normalizedCurrency,
+                value,
+                content_name: socialMedia,
+            },
             { event_id: eventId }
         );
+    }
+
+    if (platforms.includes("pinterest") && typeof window.pintrk === "function") {
+        window.pintrk("track", "custom", {
+            event_name: "SocialClick",
+            event_id: eventId,
+            currency: normalizedCurrency,
+            value,
+            lead_type: socialMedia,
+        });
     }
 };
