@@ -2,10 +2,12 @@ export type TrackingPlatform = "meta" | "google" | "pinterest" | "tiktok";
 export type TrackingPlatforms = TrackingPlatform[];
 export type PaymentType = "credit_card" | "debit_card" | "paypal" | "pix" | "boleto" | "bank_transfer" | "crypto" | (string & {});
 export type ContentType = "product" | "product_group";
-export type FileType = "pdf" | "zip" | "csv" | "xlsx" | "docx" | "mp4" | "mp3" | "png" | "jpg" | "jpeg" | "app" | "exe" | (string & {});
+export type FileType = "pdf" | "zip" | "csv" | "xlsx" | "docx" | "mp4" | "mp3" | "png" | "jpg" | "jpeg" | "app" | "exe" | "dst" | (string & {});
 export type Currency = "AED" | "AMD" | "ARS" | "AUD" | "AZN" | "BAM" | "BGN" | "BHD" | "BMD" | "BND" | "BOB" | "BRL" | "BSD" | "CAD" | "CHF" | "CLP" | "CNY" | "COP" | "CRC" | "CZK" | "DKK" | "DOP" | "EGP" | "EUR" | "FJD" | "GBP" | "GEL" | "GIP" | "HKD" | "HNL" | "HRK" | "HUF" | "IDR" | "ILS" | "INR" | "ISK" | "JMD" | "JPY" | "KGS" | "KRW" | "KWD" | "KZT" | "MAD" | "MDL" | "MOP" | "MXN" | "MYR" | "NOK" | "NZD" | "OMR" | "PAB" | "PEN" | "PHP" | "PKR" | "PLN" | "QAR" | "RON" | "RSD" | "RUB" | "SAR" | "SEK" | "SGD" | "THB" | "TRY" | "TWD" | "UAH" | "USD" | "UYU" | "VND" | "ZAR";
 export type RegistrationType = "email" | "google" | "facebook" | "apple" | "github" | (string & {});
 export type ContactType = "whatsapp" | "email" | "phone" | "chat" | "contact_form" | (string & {});
+export type SocialPlatform = "instagram" | "facebook" | "tiktok" | "pinterest" | "youtube" | "linkedin" | "x" | "whatsapp" | "threads" | "behance" | "github" | "snapchat" | (string & {});
+export type LocationType = "footer" | "header" | "contact_page" | "about_section" | (string & {});
 export type ShareType = "whatsapp" | "twitter" | "copy_link" | "email" | "facebook" | "instagram" | (string & {});
 
 export interface ProductItem {
@@ -27,7 +29,7 @@ export interface BaseEvent {
   hasConsented: boolean;
   platforms: TrackingPlatforms;
   eventId?: string;
-  currency?: Currency; 
+  currency?: Currency;
   value?: number;
 }
 
@@ -43,21 +45,21 @@ export interface AddPaymentInfoPayload extends BaseCommerceEvent {
 
 export interface AddToCartPayload extends BaseCommerceEvent { }
 
-export interface RemoveFromCartPayload extends BaseCommerceEvent {}
+export interface RemoveFromCartPayload extends BaseCommerceEvent { }
 
 export interface AddToWishlistPayload extends BaseCommerceEvent { }
 
 export interface InitiateCheckoutPayload extends BaseCommerceEvent { }
 
 export interface PurchasePayload extends BaseCommerceEvent {
-  eventId: string;   
+  eventId: string;
   currency: Currency;
-  value: number;       
-  orderId: string;     
+  value: number;
+  orderId: string;
 }
 
 export interface SharePayload extends BaseCommerceEvent {
-  shareMethod?: string;
+  shareMethod?: ShareType;
 }
 
 export interface ViewContentPayload extends BaseCommerceEvent { }
@@ -89,10 +91,6 @@ export interface StartTrialPayload extends BaseCommerceEvent {
   predictedLtv?: number;
 }
 
-export interface SharePayload extends BaseCommerceEvent {
-  shareMethod?: string;
-}
-
 export interface LoginPayload extends BaseEvent {
   loginMethod?: RegistrationType;
 }
@@ -113,6 +111,11 @@ export interface CompleteRegistrationPayload extends BaseEvent {
 
 export interface ContactPayload extends BaseEvent {
   contactMethod?: ContactType;
+}
+
+export interface SocialClickPayload extends BaseEvent {
+  socialMedia: SocialPlatform;
+  location?: LocationType;
 }
 
 export interface LeadPayload extends BaseEvent {
